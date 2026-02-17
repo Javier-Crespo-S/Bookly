@@ -1,8 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
+from api.extensions import db
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
-db = SQLAlchemy()
+
 
 class User(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
