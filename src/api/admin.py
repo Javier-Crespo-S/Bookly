@@ -1,18 +1,23 @@
-import os
-import inspect
+# api/admin.py
 from flask_admin import Admin
-from . import models
-from .models import db
 from flask_admin.contrib.sqla import ModelView
-from flask_admin.theme import Bootstrap4Theme
+from sqlalchemy import inspect
+from src.api.extensions import db
+from src.api.users.models import User
+from src.api.books.models import Book
+from src.api.reviews.models import Review
 
+
+def table_exists(model, app):
+    with app.app_context():  
+        inspector = inspect(db.engine)
+        return model.__tablename__ in inspector.get_table_names()
 
 def setup_admin(app):
-    app.secret_key = os.environ.get('FLASK_APP_KEY', 'sample key')
-    admin = Admin(app, name='4Geeks Admin', theme=Bootstrap4Theme(swatch='cerulean'))
+    admin = Admin(app, name="Bookly Admin")  
 
-    # Dynamically add all models to the admin interface
-    for name, obj in inspect.getmembers(models):
-        # Verify that the object is a SQLAlchemy model before adding it to the admin. 
-        if inspect.isclass(obj) and issubclass(obj, db.Model):
-            admin.add_view(ModelView(obj, db.session))
+    models = [User, Book, Review]
+    for model in models:
+        if table_exists(model, app):
+            from flask_admin.contrib.sqla import ModelView
+            admin.add_view(ModelView(model, db.session))
