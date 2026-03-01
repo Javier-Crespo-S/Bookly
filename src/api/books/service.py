@@ -19,10 +19,6 @@ def get_book_by_user_google(user_id: int, google_id: str) -> Book | None:
     return Book.query.filter_by(user_id=user_id, google_id=google_id).first()
 
 
-def get_book_by_google_id(user_id: int, google_id: str) -> Book | None:
-    return get_book_by_user_google(user_id, google_id)
-
-
 def create_book(data: dict, user_id: int) -> Book:
     google_id = data.get("google_id")
     if not google_id:

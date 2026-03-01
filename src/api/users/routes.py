@@ -14,9 +14,8 @@ def create():
     data = require_json(request.get_json(silent=True))
 
     email = require_str(data, "email")
-    password = require_str(data, "password")
 
-    user = create_user(email, password)
+    user = create_user(email)
 
     return jsonify({
         "id": user.id,

@@ -1,8 +1,8 @@
-"""books google_id unique per user
+"""init
 
-Revision ID: 853e88c81432
+Revision ID: f228a86af582
 Revises: 
-Create Date: 2026-02-23 21:03:42.479129
+Create Date: 2026-03-01 13:23:35.221575
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '853e88c81432'
+revision = 'f228a86af582'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('password', sa.String(length=128), nullable=False),
+    sa.Column('password_hash', sa.String(length=255), nullable=False),
     sa.Column('is_active', sa.Boolean(), server_default='1', nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
@@ -35,7 +35,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('google_id')
+    sa.UniqueConstraint('user_id', 'google_id', name='uq_books_user_google')
     )
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
