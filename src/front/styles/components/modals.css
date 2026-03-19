@@ -1,0 +1,74 @@
+.bookly-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 31, 59, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 1040;
+}
+
+.bookly-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1050;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.bookly-modal .modal-dialog {
+  margin: 0;
+  width: 100%;
+  max-width: min(720px, 92vw);
+}
+
+
+
+.bookly-modal .modal-content {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.96);
+  border: 0;
+  border-radius: 16px;
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.25),
+    0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+  animation: booklyModalIn 0.18s ease;
+}
+
+
+
+.bookly-modal .modal-header {
+  padding: 24px 28px 16px 28px;
+}
+
+.bookly-modal .modal-body {
+  padding: 16px 28px 24px 28px;
+}
+
+.bookly-modal .modal-footer {
+  padding: 20px 28px;
+  gap: 10px;
+}
+
+
+
+.bookly-modal .btn {
+  padding: 8px 16px;
+}
+
+
+@keyframes booklyModalIn {
+  from {
+    transform: translateY(12px) scale(0.98);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

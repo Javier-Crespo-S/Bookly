@@ -1,6 +1,7 @@
 import os
 from flask import Flask, jsonify
 from werkzeug.exceptions import HTTPException
+from flask_cors import CORS
 
 from src.api.config import Config
 from src.api.extensions import db, migrate, jwt
@@ -17,6 +18,18 @@ from src.api.auth.routes import auth_bp
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config.from_object(Config)
+    CORS(
+    app,
+    resources={r"/api/*": {"origins": [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]}},
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+)
 
     @app.errorhandler(APIException)
     def handle_api_error(err: APIException):
@@ -78,6 +91,7 @@ def create_app() -> Flask:
 
 app = create_app()
 
+
 if __name__ == "__main__":
-    PORT = int(os.environ.get("PORT", 3001))
+    PORT = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=PORT, debug=True)

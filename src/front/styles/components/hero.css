@@ -1,0 +1,122 @@
+.hero-wrap{
+  background: radial-gradient(1200px circle at 20% 10%, #EAF3FF 0%, rgba(245,250,255,0.8) 35%, #F5FAFF 70%);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-card{
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px rgba(11,31,59,0.08);
+}
+
+.mini-card{
+  background: #F7FBFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.hero-kpi{
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.hero-search{
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 26px rgba(11,31,59,0.08);
+  overflow: visible;
+}
+
+.hero-search-input{
+  border: none;
+  box-shadow: none;
+}
+
+.hero-search-input:focus{
+  box-shadow: none;
+}
+
+.hero-search-btn{
+  padding-inline: 22px;
+}
+
+.hero-autocomplete{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(11,31,59,0.10);
+  overflow: hidden;
+  z-index: 200;
+  width: 100%;
+}
+
+.hero-suggest-item{
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.hero-suggest-item:hover,
+.hero-suggest-item.active{
+  background: var(--soft);
+}
+
+.hero-suggest-rich{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-suggest-cover{
+  width: 42px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--soft) 0%, #FFFFFF 65%);
+}
+
+.hero-suggest-cover img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-suggest-cover-fallback{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.hero-suggest-meta{
+  min-width: 0;
+  flex: 1;
+}
+
+.hero-suggest-title{
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hero-suggest-author{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

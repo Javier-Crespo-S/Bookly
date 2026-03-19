@@ -1,30 +1,77 @@
-// Import necessary components and functions from react-router-dom.
-
 import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
 } from "react-router-dom";
+
 import { Layout } from "./pages/Layout";
-import { Home } from "./pages/Home";
+import { Home } from "./pages/Home.jsx";
+import { Library } from "./pages/Library.jsx";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
+import { Auth } from "./pages/Auth.jsx";
+import { Explore } from "./pages/Explore.jsx";
+import BookDetail from "./pages/BookDetail.jsx";
+import { About } from "./pages/About.jsx";
+import { AccountSettings } from "./pages/AccountSettings.jsx";
+import { RequireAuth } from "./components/RequireAuth.jsx";
 
 export const router = createBrowserRouter(
-    createRoutesFromElements(
-    // CreateRoutesFromElements function allows you to build route elements declaratively.
-    // Create your routes here, if you want to keep the Navbar and Footer in all views, add your new routes inside the containing Route.
-    // Root, on the contrary, create a sister Route, if you have doubts, try it!
-    // Note: keep in mind that errorElement will be the default page when you don't get a route, customize that page to make your project more attractive.
-    // Note: The child paths of the Layout element replace the Outlet component with the elements contained in the "element" attribute of these child paths.
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>}>
+      <Route path="/auth" element={<Auth />} />
+      <Route path="/explore" element={<Explore />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/demo" element={<Demo />} />
 
-      // Root Route: All navigation will start from here.
-      <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>} >
+      <Route
+        index
+        element={
+          <RequireAuth>
+            <Home />
+          </RequireAuth>
+        }
+      />
 
-        {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
-        <Route path= "/" element={<Home />} />
-        <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/demo" element={<Demo />} />
-      </Route>
-    )
+      <Route
+        path="/home"
+        element={
+          <RequireAuth>
+            <Home />
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path="/library"
+        element={
+          <RequireAuth>
+            <Library />
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path="/single/:theId"
+        element={
+          <RequireAuth>
+            <Single />
+          </RequireAuth>
+        }
+      />
+
+      <Route path="/books/:id" element={<BookDetail />} />
+
+      <Route path="/books/google/:googleId" element={<BookDetail />} />
+
+      <Route
+        path="/account"
+        element={
+          <RequireAuth>
+            <AccountSettings />
+          </RequireAuth>
+        }
+      />
+    </Route>
+  )
 );

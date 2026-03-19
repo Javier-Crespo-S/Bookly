@@ -18,6 +18,16 @@ class Book(db.Model):
 
     google_id: Mapped[str] = mapped_column(String(255), nullable=False)
 
+    thumbnail: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    description: Mapped[str | None] = mapped_column(String(3000), nullable=True)
+
+    status: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False,
+        default="wishlist",
+        server_default="wishlist",
+    )
+
     user_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"), nullable=False)
 
     user: Mapped["User"] = relationship(
@@ -40,5 +50,8 @@ class Book(db.Model):
             "author": self.author,
             "published_date": self.published_date,
             "google_id": self.google_id,
+            "thumbnail": self.thumbnail,
+            "description": self.description,
+            "status": self.status,
             "user_id": self.user_id,
         }

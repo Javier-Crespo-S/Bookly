@@ -1,0 +1,89 @@
+body{
+  background: var(--bg);
+  color: var(--text);
+}
+
+.text-muted{
+  color: var(--muted) !important;
+}
+
+.card{
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(11,31,59,0.06);
+}
+
+.badge-soft{
+  background: var(--soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.home-hero {
+  position: relative;
+  background:
+    radial-gradient(900px circle at top left, rgba(47, 128, 237, 0.16) 0%, rgba(47, 128, 237, 0) 50%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border-radius: 20px;
+}
+
+.home-kicker {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2f80ed;
+}
+
+.home-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.home-lead {
+  max-width: 62ch;
+  color: #5f6b7a;
+  font-size: 1.05rem;
+}
+
+.home-search .form-control {
+  border-radius: 14px;
+}
+
+.home-search .btn {
+  border-radius: 14px;
+}
+
+.home-info-card {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 40px rgba(11, 31, 59, 0.08);
+  border-radius: 18px;
+}
+
+.home-feature {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.home-feature-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(47, 128, 237, 0.1);
+  color: #2f80ed;
+  flex-shrink: 0;
+}
+
+.navbar-logo{
+  height:36px;
+  width:auto;
+  object-fit:contain;
+  transition:transform .2s ease;
+}
+
+.navbar-brand:hover .navbar-logo{
+  transform:scale(1.05);
+}
